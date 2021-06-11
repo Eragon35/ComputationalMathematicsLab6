@@ -1,8 +1,9 @@
 package Prog
 
+import scala.io.StdIn
+
 object Main extends App {
   var x: Double = 0.0
-  var func = null
   println(
     """ Вариант №2
       | y' = y + (1 + x) * y^2; y(1) = -1
@@ -11,7 +12,15 @@ object Main extends App {
   // Одношаговые методы - Усовершенствованный метод Эйлера
   // Многошаговые методы - Милна
   while (true) {
-    func =
+    val tmp = ConsoleHandler.inputFunc(StdIn.readLine())
+    val func = tmp._1
+    val start = tmp._2
+    println("Введите правую границы:")
+    val b = ConsoleHandler.inputData(StdIn.readLine())
+    println("Введите шаг")
+    val step = ConsoleHandler.inputData(StdIn.readLine())
+    UpgradedEuler.solve(func, start, b, step)
+    Milnes.solve(func, start, b, step)
   }
 
   //chose function
