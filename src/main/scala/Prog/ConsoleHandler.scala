@@ -4,8 +4,7 @@ import scala.annotation.tailrec
 import scala.io.StdIn
 
 object ConsoleHandler {
-  private var left: Double = 0.0
-  private var right: Double = 0.0
+
   @tailrec
   def inputFunc(line: String): ((Double, Double) => Double, (Double, Double)) = {
     line.trim.toLowerCase match {
@@ -22,10 +21,10 @@ object ConsoleHandler {
   }
   private def first(x: Double, y: Double): Double = y + (1 + x) * Math.pow(y, 2)
   private def second(x: Double, y: Double): Double = Math.pow(x-y, 2) + 1
-  private def third(x: Double, y: Double): Double = Math.cos(x)
+  private def third(x: Double, y: Double): Double = x * Math.exp(-Math.pow(x, 2)) - 2 * x * y
 
   @tailrec
-  def inputData(string: String): (Double) = {
+  def inputData(string: String): Double = {
     try {
       string.trim.replaceAll(",", ".").toDouble
     }

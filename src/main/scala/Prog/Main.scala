@@ -22,7 +22,4 @@ object Main extends App {
     UpgradedEuler.solve(func, start, b, step)
     Milnes.solve(func, start, b, step)
   }
-
-  //chose function
-  //chose x0 & y0?
 }
