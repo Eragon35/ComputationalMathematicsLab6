@@ -11,6 +11,8 @@ object ConsoleHandler {
       case "1" | "a" => (first,(1, -1))
       case "2" | "b" => (second,(0, 0))
       case "3" | "c" => (third,(-1, 1/ (2 * Math.exp(1))))
+      case "4" | "d" => (forth, (0, 1))
+
       case "exit" | "no" | "n" | "учше" =>
         print("Хорошего Вам дня!")
         System.exit(0)
@@ -22,6 +24,7 @@ object ConsoleHandler {
   private def first(x: Double, y: Double): Double = y + (1 + x) * Math.pow(y, 2)
   private def second(x: Double, y: Double): Double = Math.pow(x-y, 2) + 1
   private def third(x: Double, y: Double): Double = x * Math.exp(-Math.pow(x, 2)) - 2 * x * y
+  private def forth(x: Double, y: Double): Double = Math.pow(x, 2) - 2 * y
 
   @tailrec
   def inputData(string: String): Double = {
