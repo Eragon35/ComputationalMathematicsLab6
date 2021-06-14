@@ -8,10 +8,12 @@ object Main extends App {
     """ Вариант №2
       | y' = y + (1 + x) * y^2; y(1) = -1
       | y' = (x-y)^2 + 1; y(0) = 0
-      | y' = xe^(-x)^2 - 2 * xy; y(-1) = 1 / 2e""".stripMargin)
+      | y' = xe^(-x)^2 - 2 * xy; y(-1) = 1 / 2e
+      | y' = x^2 - 2y; y(0) = 1""".stripMargin)
   // Одношаговые методы - Усовершенствованный метод Эйлера
   // Многошаговые методы - Милна
   while (true) {
+    println("Выберите функицю")
     val tmp = ConsoleHandler.inputFunc(StdIn.readLine())
     val func = tmp._1
     val start = tmp._2
@@ -19,7 +21,8 @@ object Main extends App {
     val b = ConsoleHandler.inputData(StdIn.readLine())
     println("Введите шаг")
     val step = ConsoleHandler.inputData(StdIn.readLine())
-    UpgradedEuler.solve(func, start, b, step)
-    Milnes.solve(func, start, b, step)
+    val euler = UpgradedEuler.solve(func, start, b, step)
+    val milnes = Milnes.solve(func, start, b, step, euler)
+    Graph.show(euler, milnes)
   }
 }
