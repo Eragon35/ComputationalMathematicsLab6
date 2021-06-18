@@ -5,14 +5,15 @@ object Euler {
     var y0 = start._2
     var xi: Double = start._1
     var data = IndexedSeq[(Double, Double)]((xi, y0))
-    println("Усовершенствованный метод Эйлера:\ni   xi    yi     f()")
-    while (xi < b) {
+    println("Метод Эйлера:\ni   xi     yi      f()")
+    // Yi+1 = Yi + h * F(Xi, Yi)
+    while (xi < b + .00001) {
       val yi = y0 + h * func(xi, y0)
-      println(f"${((xi - start._1) / h).toInt}  $xi%1.1f  $y0%1.3f  ${func(xi,y0)}%1.3f ")
+      println(f"${((xi - start._1) / h + 0.1).toInt}  $xi%1.2f  $y0%1.4f  ${func(xi,y0)}%1.4f")
       xi += h
       data = data :+ (xi, yi)
       y0 = yi
     }
-    data
+    data.dropRight(1)
   }
 }
