@@ -15,7 +15,8 @@ object Main extends App {
     val equation = ConsoleHandler.inputData()
     val euler = Euler.solve(equation)
     val adams = Adams.solve(equation, euler)
-    for (i <- euler.indices) println(s"${euler(i)._1} euler = ${euler(i)._2}; adams = ${adams(i)._2}")
-    Graph.show(euler, adams)
+    val solution = TrueSolution.solve(equation)
+//    for (i <- euler.indices) println(s"${euler(i)._1} euler = ${euler(i)._2}; adams = ${adams(i)._2}")
+    Graph.show(euler, adams, equation)
   }
 }
