@@ -1,6 +1,5 @@
 package Prog
 
-import scala.io.StdIn
 
 object Main extends App {
   var x: Double = 0.0
@@ -12,11 +11,11 @@ object Main extends App {
   // Одношаговые методы - метод Эйлера
   // Многошаговые методы - метод Адамса
   while (true) {
-    val equation = ConsoleHandler.inputData()
+    val equation = ConsoleHandler.inputEquation()
     val euler = Euler.solve(equation)
     val adams = Adams.solve(equation, euler)
     val solution = TrueSolution.solve(equation)
 //    for (i <- euler.indices) println(s"${euler(i)._1} euler = ${euler(i)._2}; adams = ${adams(i)._2}")
-    Graph.show(euler, adams, equation)
+    Graph.show(euler, adams, solution)
   }
 }

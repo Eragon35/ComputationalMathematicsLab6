@@ -6,14 +6,16 @@ import scala.io.StdIn
 
 object ConsoleHandler {
 
-  def inputData(): Equation = {
+  def inputEquation(): Equation = {
     println("Выберите функицю:")
     val temp = inputFunc(StdIn.readLine())
     println("Введите правую границы:")
     val end = inputData(StdIn.readLine())
     println("Введите шаг")
     val step = inputData(StdIn.readLine())
-    Equation(temp._1, temp._2, end, step, temp._3)
+    println("Введите желаемую точность")
+    val accuracy = inputData(StdIn.readLine())
+    Equation(temp._1, temp._2, end, step, temp._3, accuracy)
   }
 
   @tailrec
