@@ -11,10 +11,12 @@ object Main extends App {
   // Одношаговые методы - метод Эйлера
   // Многошаговые методы - метод Адамса
   while (true) {
-    val equation = ConsoleHandler.inputEquation()
-    val euler = Euler.solve(equation)
-    val adams = Adams.solve(equation, euler)
-    val solution = TrueSolution.solve(equation)
+    val temp = ConsoleHandler.inputEquation()
+    val equation = temp._1
+    val h = temp._2
+    val euler = Euler.solve(equation, h)
+    val adams = Adams.solve(equation, h)
+    val solution = TrueSolution.solve(equation, h)
 //    for (i <- euler.indices) println(s"${euler(i)._1} euler = ${euler(i)._2}; adams = ${adams(i)._2}")
     Graph.show(euler, adams, solution)
   }
