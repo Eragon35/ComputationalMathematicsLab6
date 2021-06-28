@@ -7,13 +7,11 @@ object Main extends App {
     """ Вариант №2
       | 1) y' = y + (1 + x) * y^2; y(1) = -1
       | 2) y' = (x-y)^2 + 1; y(0) = 0
-      | 3) y' = xe^(-x)^2 - 2 * xy; y(-1) = 1 / 2e""".stripMargin)
+      | 3) y' = xe^(-x)^2 - 2 * xy; y(-1) = 1/2e""".stripMargin)
   // Одношаговые методы - метод Эйлера
   // Многошаговые методы - метод Адамса
   while (true) {
-    val temp = ConsoleHandler.inputEquation()
-    val equation = temp._1
-    val h = temp._2
+    val (equation, h) = ConsoleHandler.inputEquation()
     val euler = Euler.solve(equation, h)
     val adams = Adams.solve(equation, h)
     val solution = TrueSolution.solve(equation, h)

@@ -15,8 +15,8 @@ object Adams {
       val Fi = equation.func(data.last._1, data.last._2)
       val delta1h = 1 / 2 * pow(h, 2) * (Fi - Fmin1) // h^2/2 * ΔFi
       val delta2h = 5 / 12 * pow(h, 3) * (Fi - 2 * Fmin1 + Fmin2) // 5h^3/12 * Δ^2Fi
-      val delta3 = Fi - 3 * Fmin1 + 3 * Fmin2 - Fmin3 // Δ^3Fi
-      val yi = data.last._2 + h * Fi + delta1h + delta2h + 3 / 8 * pow(h, 4) * delta3 // Yi+1
+      val delta3 = 3 / 8 * pow(h, 4) * (Fi - 3 * Fmin1 + 3 * Fmin2 - Fmin3) // 3h^4/8 * Δ^3Fi
+      val yi = data.last._2 + h * Fi + delta1h + delta2h + delta3 // Yi+1
       // calculate R
       if (Math.abs(yi - equation.solution(xi)) > equation.accuracy) return solve(equation, h / 2)
       lines = lines :+ f"${((xi - equation.start._1) / h + 0.1).toInt}  $xi%1.2f  " +
@@ -27,8 +27,8 @@ object Adams {
     if (recursion) {
       val y2h = solve(equation, h / 2 , recursion = false)
       val r = y2h.zipWithIndex.filter { case (_, i) => (i + 1) % 2 != 0 }.map { case (v, _) => v}
-      var answer = "Метод Адамса:\n\t\t\t\t\t\t  точное\ni   xi     yi      f()   значение погрешность\n"
-      for (i <- lines.indices) answer += lines(i) + f"   ${(data(i)._2 - r(i)._2) / 15}%1.4f\n"
+      var answer = s"Метод Адамса: c шагом h = ${h}\n\t\t\t\t\t\t  точное\ni   xi     yi      f()   значение погрешность\n"
+      for (i <- lines.indices) answer += lines(i) + f"   ${Math.abs(data(i)._2 - r(i)._2) / 15}%1.4f\n"
       println(answer)
     }
     data

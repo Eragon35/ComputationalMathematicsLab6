@@ -23,7 +23,7 @@ object ConsoleHandler {
     line.trim.toLowerCase match {
       case "1" | "a" => (first,(1, -1), trueFirst)
       case "2" | "b" => (second,(0, 0), trueSecond)
-      case "3" | "c" => (third,(-1, 1/ (2 * Math.exp(1))), trueThird)
+      case "3" | "c" => (third,(-1, 1 / (2 * Math.exp(1))), trueThird)
 
       case "exit" | "no" | "n" | "учше" =>
         print("Хорошего Вам дня!")
